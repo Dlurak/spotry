@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import { accessToken, newAccessToken } from '$lib/spotify/accessToken';
+	import { accessToken } from '$lib/spotify/accessToken';
 	import { onMount } from 'svelte';
 	import { svocal } from '$lib/svocal';
 

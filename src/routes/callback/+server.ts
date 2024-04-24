@@ -10,7 +10,7 @@ export const GET = ({ request }: { request: Request }) => {
 	const code = search.get('code');
 	const error = search.get('error');
 
-	console.log(get(oauthStates), state)
+	console.log(get(oauthStates), state);
 
 	if (!get(oauthStates).includes(state || '')) {
 		throw redirect(307, `${ownUrl.origin}/oauth/error?reason=failed`);

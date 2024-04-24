@@ -1,4 +1,4 @@
-import { localstorage } from "svocal"
+import { localstorage } from 'svocal';
 
 const keys = {
 	accessToken: {
@@ -12,15 +12,15 @@ const keys = {
 	refreshToken: {
 		key: 'oauth.token.refresh',
 		default: null as string | null
-	},
+	}
 };
 
-type SvocalKey = keyof typeof keys
+type SvocalKey = keyof typeof keys;
 
-type SvocalDefault<T extends SvocalKey> = typeof keys[T]["default"]
+type SvocalDefault<T extends SvocalKey> = (typeof keys)[T]['default'];
 
 export function svocal<T extends SvocalKey>(key: T) {
-	const obj = keys[key]
+	const obj = keys[key];
 
-	return localstorage(obj.key, obj.default as SvocalDefault<T>)
+	return localstorage(obj.key, obj.default as SvocalDefault<T>);
 }

@@ -6,7 +6,7 @@
 	import '../app.css';
 	import type { LayoutData } from './$types';
 
-	export let data: LayoutData
+	export let data: LayoutData;
 
 	const msToSec = 1_000_000;
 
@@ -34,7 +34,4 @@
 	setTimeout(refresh, Math.max(0, secondsUntilAccessTokenExpires - 20) * msToSec);
 </script>
 
-<Navbar />
-<main class="min-h-screen text-black dark:text-white px-4 py-2">
-	<slot />
-</main>
+<slot />

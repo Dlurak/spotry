@@ -103,6 +103,8 @@ const currentlyPlayingScheme = z.object({
 	)
 });
 
+export type CurrentlyPlaying = z.infer<typeof currentlyPlayingScheme>;
+
 interface CurrentlyPlayingTrackProps {
 	accessToken: string;
 }

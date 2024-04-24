@@ -33,7 +33,7 @@ export async function accessToken({ base64Encoded, redirectUri, code }: AccessTo
 const refreshAccessTokenScheme = z.object({
 	access_token: z.string(),
 	expires_in: z.number().int().min(0),
-	token_type: z.literal('Bearer'),
+	token_type: z.literal('Bearer')
 });
 
 interface RefreshAccessTokenProps {

@@ -29,3 +29,32 @@ export async function accessToken({ base64Encoded, redirectUri, code }: AccessTo
 
 	return accessTokenScheme.parse(unparsed);
 }
+
+const refreshAccessTokenScheme = z.object({
+	access_token: z.string(),
+	expires_in: z.number().int().min(0),
+	token_type: z.literal('Bearer'),
+});
+
+interface RefreshAccessTokenProps {
+	refreshToken: string;
+	base64Encoded: string;
+}
+
+export async function newAccessToken({ refreshToken, base64Encoded }: RefreshAccessTokenProps) {
+	const unparsed = await fetch('https://accounts.spotify.com/api/token', {
+		method: 'POST',
+		body: new URLSearchParams({
+			grant_type: 'refresh_token',
+			refresh_token: refreshToken
+		}),
+		headers: {
+			'Content-Type': 'application/x-www-form-urlencoded',
+			Authorization: `Basic ${base64Encoded}`
+		}
+	}).then((r) => r.json());
+
+	console.log(unparsed)
+	const parsed = refreshAccessTokenScheme.parse(unparsed);
+	return parsed;
+}

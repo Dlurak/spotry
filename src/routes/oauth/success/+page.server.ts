@@ -1,5 +1,5 @@
 import { redirect } from '@sveltejs/kit';
-import type { PageServerLoadEvent } from "./$types"
+import type { PageServerLoadEvent } from './$types';
 import { CLIENT_ID, CLIENT_SECRET } from '$env/static/private';
 
 export function load({ url }: PageServerLoadEvent) {
@@ -11,6 +11,7 @@ export function load({ url }: PageServerLoadEvent) {
 	return {
 		code,
 		redirectUri,
-		base64: btoa(`${CLIENT_ID}:${CLIENT_SECRET}`)
+		base64: btoa(`${CLIENT_ID}:${CLIENT_SECRET}`),
+		clientId: CLIENT_ID
 	};
 }

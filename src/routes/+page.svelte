@@ -20,13 +20,19 @@
 	}
 
 	const data = writable<null | CurrentlyPlaying>(null);
+	const lastUpdate = writable(0);
 
-	const load = () => {
+	const load = async () => {
 		if (!$accessToken || document.hidden) return;
 
-		getCurrentlyPlayingTrack({
+		const msSinceLastUpdate = new Date().getTime() - $lastUpdate;
+		if (msSinceLastUpdate < 3_000) return;
+
+		await getCurrentlyPlayingTrack({
 			accessToken: $accessToken
 		}).then(data.set);
+
+		lastUpdate.set(new Date().getTime());
 	};
 
 	onMount(() => {
@@ -37,11 +43,16 @@
 	});
 
 	const titl = title();
-
 	data.subscribe((d) => {
-		if (browser) titl.set(`Spotry ${d?.item?.name}`);
+		if (browser) titl.set(`Spotry ${d?.item?.name || ''}`);
 	});
 </script>
+
+<svelte:window
+	on:focus={() => {
+		load();
+	}}
+/>
 
 {#if $data?.item}
 	{@const { item } = $data}

@@ -3,7 +3,6 @@
 	import { goto } from '$app/navigation';
 	import { getCurrentlyPlayingTrack, type CurrentlyPlaying } from '$lib/spotify/player';
 	import { svocal } from '$lib/svocal';
-	import { nowInSeconds } from '$lib/utils/dates/convert';
 	import { onMount } from 'svelte';
 	import { writable } from 'svelte/store';
 	import 'iconify-icon';
@@ -11,22 +10,16 @@
 	import MetaData from '$lib/components/player/MetaData.svelte';
 	import MainImg from '$lib/components/player/MainImg.svelte';
 
-	const tokenExpires = svocal('accessTokenExpires');
 	const accessToken = svocal('accessToken');
 
-	$: isLoggedin = $tokenExpires > nowInSeconds() && $accessToken;
-
 	$: {
-		if (!isLoggedin && browser) {
-			goto('/login');
-		}
+		if (!$accessToken && browser) goto('/login');
 	}
 
 	const data = writable<null | CurrentlyPlaying>(null);
 
 	const load = () => {
-		if (!$accessToken) return;
-		if (document.hidden) return;
+		if (!$accessToken || document.hidden) return;
 
 		getCurrentlyPlayingTrack({
 			accessToken: $accessToken

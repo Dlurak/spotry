@@ -8,6 +8,9 @@ dependencies:
   iconify-icon:
     specifier: ^2.1.0
     version: 2.1.0
+  svelte-tilt:
+    specifier: ^0.0.3
+    version: 0.0.3
   svocal:
     specifier: ^0.2.2
     version: 0.2.2(@sveltejs/kit@2.5.7)(svelte@4.2.15)
@@ -2615,6 +2618,10 @@ packages:
       svelte: 4.2.15
       typescript: 5.4.5
     dev: true
+
+  /svelte-tilt@0.0.3:
+    resolution: {integrity: sha512-C7j/noDHRQybkgtV41TQD0zXaReJPgEDDl81dzRRBNbpDjOVtvl8B4V2w9qGzRsHdulQn7izctofgRDMWCzVqA==}
+    dev: false
 
   /svelte@4.2.15:
     resolution: {integrity: sha512-j9KJSccHgLeRERPlhMKrCXpk2TqL2m5Z+k+OBTQhZOhIdCCd3WfqV+ylPWeipEwq17P/ekiSFWwrVQv93i3bsg==}

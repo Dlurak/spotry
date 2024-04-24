@@ -1,4 +1,6 @@
 <script lang="ts">
+	import tilt from "svelte-tilt"
+
 	export let img: {
 		url: string;
 		height: number;
@@ -10,7 +12,10 @@
 
 <div
 	class="relative z-50 overflow-hidden rounded-lg shadow-2xl transition-all"
-	class:scale-75={isPaused}
+	use:tilt={{
+		reverse: true,
+		strength: 0.5,
+	}}
 >
 	<img src={img.url} width={img.width} height={img.height} alt="The album cover" />
 	<div

@@ -7,6 +7,9 @@
 	import { onMount } from 'svelte';
 	import { writable } from 'svelte/store';
 	import 'iconify-icon';
+	import BgImage from '$lib/components/player/BgImage.svelte';
+	import MetaData from '$lib/components/player/MetaData.svelte';
+	import MainImg from '$lib/components/player/MainImg.svelte';
 
 	const tokenExpires = svocal('accessTokenExpires');
 	const accessToken = svocal('accessToken');
@@ -21,62 +24,36 @@
 
 	const data = writable<null | CurrentlyPlaying>(null);
 
-	// TODO: real isIdle
-	const isIdle = false;
+	const load = () => {
+		if (!$accessToken) return;
+		if (document.hidden) return;
+
+		getCurrentlyPlayingTrack({
+			accessToken: $accessToken
+		}).then(data.set);
+	};
 
 	onMount(() => {
-		const func = () => {
-			if (!$accessToken) return;
+		load();
 
-			if (!isIdle)
-				getCurrentlyPlayingTrack({
-					accessToken: $accessToken
-				}).then(data.set);
-		};
-
-		func();
-		const intervalId = setInterval(func, 10_000);
-
+		const intervalId = setInterval(load, 10_000);
 		return () => clearInterval(intervalId);
 	});
 </script>
 
 {#if $data?.item}
 	{@const img = $data.item?.album?.images?.sort((a, b) => b.width - a.width).at(0)}
-	<div class="flex h-[100svh] items-center justify-evenly gap-24 px-24">
+
+	<div class="flex h-[100svh] flex-col items-center justify-evenly gap-24 px-24 md:flex-row">
 		{#if img}
-			<div>
-				<div class="z-50">
-					<img
-						src={img.url}
-						width={img.width}
-						height={img.height}
-						class="rounded-lg shadow-2xl"
-						alt="The album cover"
-					/>
-				</div>
-				<img
-					src={img.url}
-					width={img.width}
-					height={img.height}
-					alt="The album cover"
-					class="fixed bottom-0 left-0 right-0 top-0 -z-50 h-full w-full object-cover opacity-100 blur-3xl brightness-75"
-				/>
-			</div>
+			<MainImg {img} isPaused={!$data.is_playing} />
+			<BgImage {img} />
 		{/if}
-		<div>
-			<h2 class="prose text-5xl font-semibold leading-tight text-white">{$data.item?.name}</h2>
-			<span class="flex gap-4 text-xl leading-loose">
-				<span class="flex items-center gap-1">
-					<iconify-icon icon="zondicons:time" />
-					{new Date($data.item.album.release_date).toLocaleDateString()}
-				</span>
-				{#each $data.item?.artists || [] as artist}
-					<span>
-						{artist.name}
-					</span>
-				{/each}
-			</span>
-		</div>
+
+		<MetaData
+			name={$data.item.name}
+			releaseDate={$data.item.album.release_date}
+			artists={$data.item.artists}
+		/>
 	</div>
 {/if}

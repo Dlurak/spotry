@@ -54,7 +54,6 @@ export async function newAccessToken({ refreshToken, base64Encoded }: RefreshAcc
 		}
 	}).then((r) => r.json());
 
-	console.log(unparsed)
 	const parsed = refreshAccessTokenScheme.parse(unparsed);
 	return parsed;
 }

@@ -26,6 +26,5 @@ export function GET({ request }: { request: Request }) {
 			.map(([key, value]) => `${key}=${(value)}`)
 			.join('&');
 
-	// return new Response(url)
 	throw redirect(308, url);
 }

@@ -1,1 +1,3 @@
-<p>Visit <a href="/auth">auth</a></p>
+<h1>Spotry</h1>
+
+<span>A better frontend for Spotify</span>

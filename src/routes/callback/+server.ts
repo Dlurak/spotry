@@ -13,11 +13,11 @@ export const GET = ({ request }: { request: Request }) => {
 	console.log(get(oauthStates), state)
 
 	if (!get(oauthStates).includes(state || '')) {
-		throw redirect(307, `${ownUrl.origin}/oauth/error?reson=failed`);
+		throw redirect(307, `${ownUrl.origin}/oauth/error?reason=failed`);
 	}
 
 	if (error) {
-		throw redirect(307, `${ownUrl.origin}/oauth/error?reson=${error}`);
+		throw redirect(307, `${ownUrl.origin}/oauth/error?reason=${error}`);
 	}
 
 	if (code) {

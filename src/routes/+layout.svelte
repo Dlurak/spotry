@@ -26,7 +26,6 @@
 			accessToken.set(data.access_token);
 			accessTokenExpires.set(nowInSeconds() + data.expires_in);
 		});
-		window.alert($accessToken)
 
 		setTimeout(refresh, ($accessTokenExpires - 20) * msToSec);
 	};

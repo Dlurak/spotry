@@ -6,7 +6,7 @@ import { oauthStates } from '$lib/stores';
 export function GET({ request }: { request: Request }) {
 	const ownUrl = new URL(request.url);
 
-	const scopes = [] satisfies string[];
+	const scopes = ["user-read-currently-playing", "user-read-playback-state"] satisfies string[];
 	const redirectUri = `${ownUrl.origin}/callback/`;
 	const state = randomString(16);
 

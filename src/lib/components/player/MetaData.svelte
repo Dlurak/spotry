@@ -20,7 +20,7 @@
 				{new Date(releaseDate).toLocaleDateString()}
 			</span>
 
-			<div class="inline w-full">
+			<div class="inline w-full text-center md:text-start">
 				{artists.map(({ name }) => name).join(', ')}
 			</div>
 		</span>

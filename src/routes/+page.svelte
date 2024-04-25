@@ -57,20 +57,20 @@
 	{@const { item } = $data}
 	{@const img = getImages(item).at(0)}
 
-	<div
-		class="box-border flex h-[100svh] w-full flex-col items-center justify-evenly px-6 md:flex-row"
-	>
-		{#if img}
-			<MainImg {img} isPaused={!$data.is_playing} />
-			<BgImage {img} />
-		{/if}
+	<div class="box-border flex h-[100svh] w-full items-center">
+		<div class="box-border flex h-2/3 w-full flex-col items-center px-6 md:flex-row">
+			{#if img}
+				<MainImg {img} isPaused={!$data.is_playing} />
+				<BgImage {img} />
+			{/if}
 
-		{#if (item.type === 'track' || item.type === undefined) && $showMetadata}
-			<MetaData
-				name={item.name || ''}
-				releaseDate={item.album?.release_date || ''}
-				artists={item.artists?.map((a) => ({ ...a, name: a.name || '' })) || []}
-			/>
-		{/if}
+			{#if (item.type === 'track' || item.type === undefined) && $showMetadata}
+				<MetaData
+					name={item.name || ''}
+					releaseDate={item.album?.release_date || ''}
+					artists={item.artists?.map((a) => ({ ...a, name: a.name || '' })) || []}
+				/>
+			{/if}
+		</div>
 	</div>
 {/if}

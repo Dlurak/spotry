@@ -28,7 +28,7 @@
 			viewBox="0 0 24 24"
 			stroke-width="1.5"
 			stroke="currentColor"
-			class="h-48 w-48"
+			class="h-48 w-48 text-white"
 		>
 			<path
 				stroke-linecap="round"

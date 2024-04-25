@@ -12,6 +12,11 @@ const keys = {
 	refreshToken: {
 		key: 'oauth.token.refresh',
 		default: null as string | null
+	},
+
+	'settings-showMetadata': {
+		key: 'settings.showMetadata',
+		default: true
 	}
 };
 

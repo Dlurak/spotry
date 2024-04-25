@@ -11,7 +11,7 @@
 	import MainImg from '$lib/components/player/MainImg.svelte';
 	import type { CurrentlyPlaying } from '$lib/spotify/schema/currentlyPlaying';
 	import { getImages } from '$lib/utils/spotify/image';
-	import { title } from 'nutzlich';
+	import { title, useInterval } from 'nutzlich';
 
 	const accessToken = svocal('accessToken');
 
@@ -21,6 +21,8 @@
 
 	const data = writable<null | CurrentlyPlaying>(null);
 	const lastUpdate = writable(0);
+
+	const showMetadata = svocal('settings-showMetadata');
 
 	const load = async () => {
 		if (!$accessToken || document.hidden) return;
@@ -35,16 +37,13 @@
 		lastUpdate.set(new Date().getTime());
 	};
 
-	onMount(() => {
-		load();
+	useInterval(load, 10_000);
 
-		const intervalId = setInterval(load, 10_000);
-		return () => clearInterval(intervalId);
-	});
+	onMount(load);
 
 	const titl = title();
 	data.subscribe((d) => {
-		if (browser) titl.set(`Spotry ${d?.item?.name || ''}`);
+		titl.set(`Spotry ${d?.item?.name || ''}`);
 	});
 </script>
 
@@ -58,20 +57,20 @@
 	{@const { item } = $data}
 	{@const img = getImages(item).at(0)}
 
-	<div class="flex h-[100svh] flex-col items-center justify-evenly gap-24 px-24 md:flex-row">
+	<div
+		class="box-border flex h-[100svh] w-full flex-col items-center justify-evenly px-6 md:flex-row"
+	>
 		{#if img}
 			<MainImg {img} isPaused={!$data.is_playing} />
 			<BgImage {img} />
 		{/if}
 
-		{#if item.type === 'track' || item.type === undefined}
+		{#if (item.type === 'track' || item.type === undefined) && $showMetadata}
 			<MetaData
 				name={item.name || ''}
 				releaseDate={item.album?.release_date || ''}
 				artists={item.artists?.map((a) => ({ ...a, name: a.name || '' })) || []}
 			/>
-		{:else}
-			<h1>Hi</h1>
 		{/if}
 	</div>
 {/if}

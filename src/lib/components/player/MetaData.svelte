@@ -6,17 +6,23 @@
 	}[];
 </script>
 
-<div class="bg-white bg-opacity-80 bg-clip-text text-transparent">
-	<h2 class=" text-5xl font-semibold leading-tight">{name}</h2>
-	<span class="flex gap-4 text-xl leading-loose">
-		<span class="flex items-center gap-2">
-			<iconify-icon icon="zondicons:time" class="text-white" />
-			{new Date(releaseDate).toLocaleDateString()}
-		</span>
-		{#each artists as artist}
-			<span>
-				{artist.name}
+<div
+	class="flex h-2/3 w-full items-center justify-center bg-white bg-opacity-80 bg-clip-text text-transparent"
+>
+	<div class="flex flex-col">
+		<h2 class="text-balance text-center text-5xl font-semibold leading-tight md:text-start">
+			{name}
+		</h2>
+
+		<span class="flex flex-wrap text-lg leading-loose">
+			<span class="hidden items-center gap-2 md:flex">
+				<iconify-icon icon="zondicons:time" class="text-white" />
+				{new Date(releaseDate).toLocaleDateString()}
 			</span>
-		{/each}
-	</span>
+
+			<div class="inline w-full">
+				{artists.map(({ name }) => name).join(', ')}
+			</div>
+		</span>
+	</div>
 </div>

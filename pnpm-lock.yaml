@@ -9,8 +9,8 @@ dependencies:
     specifier: ^2.1.0
     version: 2.1.0
   nutzlich:
-    specifier: ^0.0.1
-    version: 0.0.1(@sveltejs/kit@2.5.7)(svelte@4.2.15)
+    specifier: ^0.2.1
+    version: 0.2.1(@sveltejs/kit@2.5.7)(svelte@4.2.15)
   svelte-tilt:
     specifier: ^0.0.3
     version: 0.0.3
@@ -1912,8 +1912,8 @@ packages:
       path-key: 4.0.0
     dev: true
 
-  /nutzlich@0.0.1(@sveltejs/kit@2.5.7)(svelte@4.2.15):
-    resolution: {integrity: sha512-mOB+HaiyDrNhDHeKo+P+d8pKWy4lrKQFTPcFFlAZsdxMRm3T5lsA1BB26PXmzGySMMdlZ2SJRDIg76B2GRadFg==}
+  /nutzlich@0.2.1(@sveltejs/kit@2.5.7)(svelte@4.2.15):
+    resolution: {integrity: sha512-YyGl94n3LN7m10dxua+53ZN9LdGWH1n5YAD37M+3wIgJEx1KZlvcIHiU6Se0gqn1jCCJZsrMW/Hn6g38CsHJ6g==}
     peerDependencies:
       '@sveltejs/kit': '*'
       svelte: ^4.0.0

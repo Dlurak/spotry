@@ -58,7 +58,7 @@
 	{@const img = getImages(item).at(0)}
 
 	<div class="box-border flex h-[100svh] w-full items-center">
-		<div class="box-border flex h-2/3 w-full flex-col items-center px-6 md:flex-row">
+		<div class="box-border flex h-2/3 w-full flex-col items-center px-6 md:flex-row md:gap-6">
 			{#if img}
 				<MainImg {img} isPaused={!$data.is_playing} />
 				<BgImage {img} />

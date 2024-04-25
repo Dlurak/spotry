@@ -12,7 +12,7 @@
 
 <div class="flex h-full w-full items-center justify-center">
 	<div
-		class="relative z-50 h-full overflow-hidden transition-all object-contain"
+		class="relative z-50 h-full overflow-hidden rounded-xl object-contain transition-all"
 		use:tilt={{
 			reverse: true,
 			strength: 0.5

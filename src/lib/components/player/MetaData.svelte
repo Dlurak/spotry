@@ -10,7 +10,9 @@
 	class="flex h-full w-full items-center justify-center bg-white bg-opacity-80 bg-clip-text text-transparent"
 >
 	<div class="flex flex-col">
-		<h2 class="text-balance text-center text-5xl font-semibold leading-tight md:text-start">
+		<h2
+			class="line-clamp-2 text-ellipsis text-balance text-center text-5xl font-semibold leading-tight md:text-start"
+		>
 			{name}
 		</h2>
 

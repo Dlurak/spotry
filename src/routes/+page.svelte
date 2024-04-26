@@ -11,7 +11,7 @@
 	import MainImg from '$lib/components/player/MainImg.svelte';
 	import type { CurrentlyPlaying } from '$lib/spotify/schema/currentlyPlaying';
 	import { getImages } from '$lib/utils/spotify/image';
-	import { title, useInterval } from 'nutzlich';
+	import { title, useIdle, useInterval } from 'nutzlich';
 
 	const accessToken = svocal('accessToken');
 
@@ -45,6 +45,10 @@
 	data.subscribe((d) => {
 		titl.set(`Spotry ${d?.item?.name || ''}`);
 	});
+
+	const isIdle = useIdle(5_000);
+
+	const hideCursor = svocal("settings-hideCursor")
 </script>
 
 <svelte:window
@@ -57,7 +61,10 @@
 	{@const { item } = $data}
 	{@const img = getImages(item).at(0)}
 
-	<div class="box-border flex h-[100svh] w-full items-center">
+	<div
+		class="box-border flex h-[100svh] w-full cursor-[--cursor] items-center"
+		style:--cursor={$isIdle && $hideCursor ? 'none' : 'unset'}
+	>
 		<div class="box-border flex h-2/3 w-full flex-col items-center px-6 md:flex-row md:gap-6">
 			{#if img}
 				<MainImg {img} isPaused={!$data.is_playing} />

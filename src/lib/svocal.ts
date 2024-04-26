@@ -17,6 +17,10 @@ const keys = {
 	'settings-showMetadata': {
 		key: 'settings.showMetadata',
 		default: true
+	},
+	'settings-hideCursor': {
+		key: 'settings.hideCursor',
+		default: true
 	}
 };
 

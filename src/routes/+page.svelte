@@ -40,6 +40,7 @@
 	useInterval(load, 10_000);
 
 	onMount(load);
+	accessToken.subscribe(load)
 
 	const titl = title();
 	data.subscribe((d) => {

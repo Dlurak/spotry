@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Navbar from '$lib/components/layout/Navbar.svelte';
 	import { newAccessToken } from '$lib/spotify/accessToken';
 	import { svocal } from '$lib/svocal';
 	import { nowInSeconds } from '$lib/utils/dates/convert';

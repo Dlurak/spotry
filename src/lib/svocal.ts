@@ -21,6 +21,10 @@ const keys = {
 	'settings-hideCursor': {
 		key: 'settings.hideCursor',
 		default: true
+	},
+	'settings-showPause': {
+		key: 'settings.showPause',
+		default: true
 	}
 };
 

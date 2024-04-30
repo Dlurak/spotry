@@ -1,21 +1,25 @@
 <script>
-	import Switch from '$lib/components/input/Switch.svelte';
+	import BoolSetting from '$lib/components/settings/BoolSetting.svelte';
 	import { svocal } from '$lib/svocal';
 
 	const showMetadata = svocal('settings-showMetadata');
 	const hideCursor = svocal('settings-hideCursor');
+	const showPause = svocal('settings-showPause');
 </script>
 
 <div class="flex flex-col gap-2 px-4 py-2">
-	<span class="flex justify-between">
-		<span>Show metadata</span>
+	<BoolSetting
+		label="Show metadata"
+		bind:checked={$showMetadata}
+	/>
 
-		<Switch bind:checked={$showMetadata} />
-	</span>
+	<BoolSetting
+		label="Hide cursor on inactivity"
+		bind:checked={$hideCursor}
+	/>
 
-	<span class="flex justify-between">
-		<span>Hide cursor on inactivity</span>
-
-		<Switch bind:checked={$hideCursor} />
-	</span>
+	<BoolSetting
+		label="Show a overlay when paused"
+		bind:checked={$showPause}
+	/>
 </div>

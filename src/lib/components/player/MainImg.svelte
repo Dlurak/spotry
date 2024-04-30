@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { svocal } from '$lib/svocal';
 	import tilt from 'svelte-tilt';
 
 	export let img: {
@@ -12,6 +13,10 @@
 	let imgEleHeight: number | null = null;
 
 	export let isPaused: boolean;
+
+	const showOverlay = svocal('settings-showPause');
+
+	$: isOverlayShown = $showOverlay && isPaused;
 </script>
 
 <div class="flex h-full w-full items-center justify-center">
@@ -28,8 +33,9 @@
 		>
 			<img src={img.url} alt="The album cover" />
 			<div
-				class="absolute inset-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50 saturate-50"
-				class:hidden={!isPaused}
+				class="absolute inset-0 h-full w-full items-center justify-center bg-black bg-opacity-50 saturate-50"
+				class:flex={isOverlayShown}
+				class:hidden={!isOverlayShown}
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"

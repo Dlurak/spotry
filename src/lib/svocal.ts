@@ -25,6 +25,10 @@ const keys = {
 	'settings-showPause': {
 		key: 'settings.showPause',
 		default: true
+	},
+	'settings-tilting': {
+		key: 'settings.tilting',
+		default: true
 	}
 };
 

@@ -16,6 +16,8 @@
 
 	const showOverlay = svocal('settings-showPause');
 
+	const tiltingEnabled = svocal('settings-tilting');
+
 	$: isOverlayShown = $showOverlay && isPaused;
 </script>
 
@@ -28,7 +30,7 @@
 			class="relative aspect-[--w/--h] w-[--width] overflow-hidden rounded-xl shadow-2xl"
 			use:tilt={{
 				reverse: true,
-				strength: 0.5
+				strength: $tiltingEnabled ? 0.5 : 0
 			}}
 		>
 			<img src={img.url} alt="The album cover" />

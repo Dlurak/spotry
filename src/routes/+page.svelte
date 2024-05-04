@@ -40,7 +40,7 @@
 	useInterval(load, 10_000);
 
 	onMount(load);
-	accessToken.subscribe(load)
+	accessToken.subscribe(load);
 
 	const titl = title();
 	data.subscribe((d) => {
@@ -49,7 +49,7 @@
 
 	const isIdle = useIdle(5_000);
 
-	const hideCursor = svocal("settings-hideCursor")
+	const hideCursor = svocal('settings-hideCursor');
 </script>
 
 <svelte:window

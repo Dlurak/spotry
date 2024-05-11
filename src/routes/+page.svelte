@@ -81,4 +81,8 @@
 			{/if}
 		</div>
 	</div>
+{:else}
+	<div class="flex items-center justify-center h-[100dvh]">
+		Start playing something
+	</div>
 {/if}

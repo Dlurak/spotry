@@ -6,6 +6,7 @@
 	const hideCursor = svocal('settings-hideCursor');
 	const showPause = svocal('settings-showPause');
 	const tiltingEnabled = svocal('settings-tilting');
+	const allowPopup = svocal('settings-allowPopup');
 </script>
 
 <div class="flex flex-col gap-2 px-4 py-2">
@@ -16,4 +17,6 @@
 	<BoolSetting label="Show a overlay when paused" bind:checked={$showPause} />
 
 	<BoolSetting label="Tilt image on hover" bind:checked={$tiltingEnabled} />
+
+	<BoolSetting label="Open a popup of the album art when clicked" bind:checked={$allowPopup} />
 </div>

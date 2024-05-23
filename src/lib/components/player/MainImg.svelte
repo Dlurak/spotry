@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { svocal } from '$lib/svocal';
 	import tilt from 'svelte-tilt';
+	import ImgPopup from './ImgPopup.svelte';
 
 	export let img: {
 		url: string;
@@ -14,8 +15,10 @@
 
 	export let isPaused: boolean;
 
-	const showOverlay = svocal('settings-showPause');
+	let showPopover = false;
 
+	const showOverlay = svocal('settings-showPause');
+	const allowPopup = svocal('settings-allowPopup');
 	const tiltingEnabled = svocal('settings-tilting');
 
 	$: isOverlayShown = $showOverlay && isPaused;
@@ -23,7 +26,7 @@
 
 <div class="flex h-full w-full items-center justify-center">
 	<div bind:clientHeight={imgEleHeight} class="flex h-full items-center justify-center">
-		<div
+		<button
 			style:--w={img.width}
 			style:--h={img.height}
 			style:--width={imgEleHeight ? `min(${imgEleHeight * aspectRatio}px, 100%)` : 'unset'}
@@ -32,6 +35,7 @@
 				reverse: true,
 				strength: $tiltingEnabled ? 0.5 : 0
 			}}
+			on:click={() => (showPopover = !showPopover)}
 		>
 			<img src={img.url} alt="The album cover" />
 			<div
@@ -54,6 +58,10 @@
 					/>
 				</svg>
 			</div>
-		</div>
+		</button>
 	</div>
 </div>
+
+{#if showPopover && $allowPopup}
+	<ImgPopup {img} {isPaused} {imgEleHeight} on:close={() => (showPopover = !showPopover)} />
+{/if}

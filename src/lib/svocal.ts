@@ -29,6 +29,10 @@ const keys = {
 	'settings-tilting': {
 		key: 'settings.tilting',
 		default: true
+	},
+	'settings-allowPopup': {
+		key: 'settings.allowPopup',
+		default: true
 	}
 };
 
